@@ -5,15 +5,15 @@ Command line tool to execute Synology "Universal Search" from within a shell.
 The web-gui on a synology NAS has a thing called "Universal Search". I wanted to be able to use this
 from the shell command line on the NAS also, and therefore created this script.
 
-Requirements:
+## Requirements:
 
 - A configured universal search (via the web-gui), which has indexed the folders to be searched.
 - Root shell access to install the search.
 
-Installation:
+## Installation:
 
 - Log on as root to a command line shell (login as admin user, and type "sudo -i" to get to the root shell).
-- Run "wget https://raw.githubusercontent.com/atkaper/synology-universal-search-cli/main/search" -O /tmp/search
+- Run "wget https://raw.githubusercontent.com/atkaper/synology-universal-search-cli/main/search -O /tmp/search"
 - Optional: Look at the script, before trusting to run it: "cat /tmp/search"
 - Run the downloaded script using "bash /tmp/search --install".
 - Run "rm -rf /tmp/search"
@@ -33,3 +33,15 @@ and always run it with: "sudo search [searchterm]".
 
 Thijs Kaper, May 7, 2021.
 
+
+## Synology Version
+
+![synology version](images/screenshot-20210507-233307-synology-version.png)
+
+## Synology GUI example search
+
+![synology gui example search](images/screenshot-20210507-233102-universal-search-gui.png)
+
+# Installation and example cli run
+
+![installation and example cli run](images/screenshot-20210507-233633-install-and-example-run.png)
