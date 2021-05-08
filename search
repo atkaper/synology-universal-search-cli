@@ -93,7 +93,7 @@ DATA="$(mktemp)"
 synowebapi --exec api=SYNO.Finder.FileIndexing.Search method=search version=1 search_weight_list='[{"field":"SYNOMDWildcard","weight":1},{"field":"SYNOMDTextContent","weight":1},{"field":"SYNOMDSearchFileName","weight":8.5,"trailing_wildcard":true}]' keyword="\"$*\"" size="$MAXHITS" from="0" fields='["SYNOMDSharePath","SYNOMDFSName","SYNOMDFSSize","SYNOMDIsDir","SYNOMDContentModificationDate"]' sorter_field='"relevance"' sorter_direction='"asc"' sorter_use_nature_sort="false" sorter_show_directory_first="true"  > "$DATA" 2>/dev/null
 
 # Format output with timestamp, dir/file flag, path, and size, and use grep to highlight search terms (the "-e ^" is to match ALL lines, in case FILTER does not match)
-jq -r '.data.hits[] | ( (.SYNOMDContentModificationDate|tonumber | strftime("%Y-%m-%d %H:%M")) + (if .SYNOMDIsDir=="y" then " [dir] " else " [file]" end) + " \"" + .SYNOMDPath + "\" (" + (if .SYNOMDFSSize|tonumber >= 1048576 then ((.SYNOMDFSSize|tonumber)/1048576+0.999|floor|tostring) + "MB)" else .SYNOMDFSSize + " Bytes)" end) )' "$DATA" | grep --color -i -e ^ -e $FILTER || true
+jq -r '.data.hits[] | ( (.SYNOMDContentModificationDate|tonumber | strftime("%Y-%m-%d %H:%M")) + (if .SYNOMDIsDir=="y" then " [dir] " else " [file]" end) + " \"" + .SYNOMDPath + "\"" + (if .SYNOMDIsDir=="y" then "" else " (" + (if .SYNOMDFSSize|tonumber >= 1048576 then ((.SYNOMDFSSize|tonumber)/1048576+0.999|floor|tostring) + "MB)" else .SYNOMDFSSize + " Bytes)" end) end) )' "$DATA" | grep --color -i -e ^ -e $FILTER || true
 
 # Show total result count (can be higher than the max $MAXHITS we return).
 echo -n "Total results:"
