@@ -37,6 +37,9 @@ and always run it with: "sudo search [searchterm]".
 Thijs Kaper, May 7, 2021.
 
 
+Note: see also https://github.com/atkaper/synology-locate-file-search-cli for installing "locate" in docker.
+
+
 ## Synology Version
 
 ![synology version](images/screenshot-20210507-233307-synology-version.png)
