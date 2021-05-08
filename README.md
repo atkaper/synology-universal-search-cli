@@ -1,5 +1,8 @@
 # Synology Universal Search CLI (Command line interface)
 
+See also blog post: https://www.kaper.com/software/synology-universal-search-cli/
+
+
 Command line tool to execute Synology "Universal Search" from within a shell.
 
 The web-gui on a synology NAS has a thing called "Universal Search". I wanted to be able to use this
